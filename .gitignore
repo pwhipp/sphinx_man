@@ -1,0 +1,16 @@
+.idea/
+__pycache__/*
+*.py[cod]
+*.db
+.DS_Store
+.coverage
+.coverage.*
+.~*
+*.swp
+*.sqlite3*
+*~
+*.log
+htmlcov/*
+testdata/
+scratch/
+*.egg-info
