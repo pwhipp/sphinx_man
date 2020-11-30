@@ -3,3 +3,6 @@ voters: voting/voters
 delegation:
   requests: voting/delegation_requests
   delegations: voting/delegations
+minimum_turnout: 1
+minimum_support: 0.51
+minimum_pending_time: 2 weeks  # voting is not closed even if support reached until this time passes

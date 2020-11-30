@@ -9,6 +9,8 @@ Collaborative development and democratic updates to a Git project with special a
 
    overview
    how_to
+   user_stories
+   gui
    voting_rules
    similar_projects
    links

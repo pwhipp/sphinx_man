@@ -1,8 +1,16 @@
 Voting Rules
 ============
 
+Maybe make this a mongodb thing. The patchrules application will apply or reject patches.
+Make it sit alongside a repo? Make Mongo the repo??
+
+If I make mongodb the repo then I'll need to be able to publish the canonical document and, with patches, publish the 'diff' version in a nice way - not just the new version, a sphinx document that shows added/removed/changed sections.
+
 A .voting_rules.yaml file may be placed in any project folder.
 The content of the .voting_rules affects patches relating to the folder's files and folders recursively.
+
+The patches consist of a set of effects each of which generates a .voting_rules using the hierarchy. These .voting_rules
+are then combined into a single file using the merge_effect_voting_rules function which combines the numeric parameters to take the 'most restrictive' option. Mismatches of other parameters generate an error and prevent consideration of the patch (two patches might be needed in the unlikely event of this occurring).
 
 The .voting_rules.yaml file is a part of the project and may be patched like any other file.
 
@@ -61,6 +69,14 @@ We call these the issue's effect which is thus a list of the changed folders.
 
 In order to fully identify an issue, we need the starting state and the proposed changes to that state.
 
+If an issue (patch) changes... What does changing it mean. It is really just a new patch but it will often based on some other patch. This progresses through folder changes e.g.
+
+requested_patches/<shared_path>/<patch name>/[<patch>,<reason_needed>,<synopsis>,['new','simplification', 'enhancement', 'clarification']
+
+Anyone can create.
+
+voting rule to accept and move to proposed_patches/....
+
 Users
 ~~~~~
 A user is identified to the system as the private key owner of a public key. Challenge/response may be used to verify
@@ -93,6 +109,22 @@ It becomes a delegation when signed by the delegatee.
 voting/voters
 voting/delegations
 
+Maybe delegate up_votes (vote up if delegatee up_votes), down_votes or both_votes.
+
+Sticky Voting
+-------------
+
+If a voter applies a sticky vote then it will be automatically recast if the issue is resubmitted with changes rather than needing to vote again. This would usually mean just minor amendments to detail so is handy in practice if the voter trusts the authors
+
+
+
+Voting Privacy
+--------------
+
+Votes are private unless they are delegatee votes in which case the delegatee is named with a count (the delegator is not shown)
+
+
+
 Voters
 ------
 
@@ -104,42 +136,16 @@ A voter is defined as an annotated public key in the voters folder. Adding a vot
        - key verification/validation from some service
        - No other file in the folder with a vote from this author
 
-Collaboration
--------------
-
-Say Douglas has everyone's /finance delegation so he becomes 'Chief of Finance' and Mary has everyone's '/military' delegation so she becomes 'Chief of Military'. If Douglas and Mary collaborate and submit an issue that allocates an additional 10% of the total budget to the military. If this only changes
-content under /finance and under /military none of their delegated votes would count intuitively (they are precluded by the opposing folder content change). OTOH if each creates an issue under their own folder that 'happens' to match. Each can automatically accept the issue, even though it is really one issue.
-
-One resolution of this story is to distribute stuff (e.g a finance allocation is a minus under some location and a plus elsewhere) but that quickly becomes artificial.
-
-We don't want Mary and Douglas to collaborate with separate issues - we want them to create a single issue. Therefore we need to merge the delegators across our delegatees with some algorithm such that it is easier for Mary and Douglas to do the 'right thing':
-
-The issue affects [/finance, /military]. The vote collection goes something like:
-
-.. code-block:: python
-
-   turnout = 0
-   votes = 0
-   for voter in voters:
-        if voter_has_signed:
-            turnout += 1
-            votes = votes + up_or_down(signature)
-        else:  # allow for multiple delegate involvement
-            delegated_vote_made = False
-            delegated_vote = 0
-            for effect in issue_effects:
-                for delegatee in delegatees(voter, effect):
-                    if delegatee_has_voted:
-                        delegated_vote_made = True
-                        delegated_vote += delegatee_vote
-                    else:  # all applicable delegatees must have voted
-                        delegated_vote_made = False
-                        break
-            if delegated_vote_made:
-                turnout += 1
-                votes = votes + delegated_vote
 
 Breaking the system
 -------------------
 
 It will always be possible to create a set of voting rules that prevent any further voting or overly de-restrict things leading to meaningless content. 'Voting templates' may be used to create hierarchies with a 'veto' role allowing prevention of adoption, a 'unilateral' role allowing users with that role to 'just do it' etc.
+
+Accommodating changes
+---------------------
+
+When an issue is accepted, all subsequent issues logically change (because the starting state is no longer the same)
+
+Blame
+-----
