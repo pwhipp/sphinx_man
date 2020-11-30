@@ -10,11 +10,13 @@ When a user with delegated votes votes, the delegate votes are also used.
 
 If a pull request content changes, voting is reset - it applies to a specific patch
 
+We fork gitlab and allow the creation of 'democratic repos' where 
+
 Musing
 ------
-A 'voting rules' meta maybe? Some sort of .voting_rules file that goes in a folder and affects the file changes in that folder and its subfolders. These would need to be merge-able for any given patch.
 
-Need a period for voting. Maybe make this voting dependent - e.g. 1 week from last vote is when request is accepted or rejected.
+A user can look at the documentation in any state in their repo copy. Perhaps badges can be used to show the current
+state of the document.
 
 Will need a way to restrict pull request generation. Perhaps an RFC model where some number of votes are needed to
 move an RFC into a proposal location...

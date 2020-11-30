@@ -1,15 +1,17 @@
 sphinx_man
 ==========
 
-Collaborative development and democratic updates to a Sphinx document
+Collaborative development and democratic updates to a Git project with special attention paid to Sphinx documentation.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    overview
+   how_to
    voting_rules
    similar_projects
+   links
 
 
 This document is a collection of `restructured text files`_ organized with `Sphinx`_ for publication as html, a pdf or other electronic publication.

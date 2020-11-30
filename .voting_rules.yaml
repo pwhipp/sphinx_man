@@ -1,0 +1,5 @@
+# File required at root of patch vote managed hierarchy
+voters: voting/voters
+delegation:
+  requests: voting/delegation_requests
+  delegations: voting/delegations
