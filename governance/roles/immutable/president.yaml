@@ -1,0 +1,9 @@
+max_number_of_assignments: 1
+max_terms: 5
+# If president has served for max_terms, their votes are cleared and the next most supported candidate assumes this role
+minimum_duration: 1 year
+# even if president loses support, they remain in this role until this time expires
+# rolls over into next term if president still has support
+maximum_duration: 1 year
+# user must seek the role by signing before other signing can begin (other people can't make an unwilling person take on this role)
+sought: yes

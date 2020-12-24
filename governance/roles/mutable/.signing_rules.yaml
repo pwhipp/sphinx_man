@@ -1,0 +1,9 @@
+signers:
+  # want committee members to be able to create and pass. Anyone else can create but would require committee or 51%
+  roles/immutable/*:
+    minimum_turnout: 1  # number of signers
+    minimum_support: 0.51  # proportion of signers
+  signing/people:
+    minimum_turnout: 7
+    minimum_support: 0.51
+minimum_pending_time: 1 week  # signing is not closed even if support reached until this time passes

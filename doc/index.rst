@@ -11,7 +11,7 @@ Collaborative development and democratic updates to a Git project with special a
    how_to
    user_stories
    gui
-   voting_rules
+   signing_rules
    similar_projects
    links
 
