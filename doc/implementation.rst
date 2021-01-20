@@ -24,6 +24,18 @@ Then we can ensure that the 'push_info' is relevant to the 'signing_rules' langu
 First step is to use the pre_receive hook to reject a push attempt that does not contain the required signatures.
 Next step is to use mostly the same code in pre_push to prevent the push attempt from taking place.
 
+Handling Changes - Signature Requirements
+-----------------------------------------
+
+Signature requirements are defined at each level in an optional '.signing_rules.yaml' file.
+
+Signatures are applied to single files and are placed in a folder .<file_name>.signatures in the same folder as the file.
+Each signature is in its own file (currently).
+
+signers are identified by files in /signers. Each file is labelled with a uid and is a yaml file containing data about the
+signer. The .signing_rules.yaml in /signers requires that each file be signed by the signer.
+
+Merging signing_rules
 Privacy
 -------
 

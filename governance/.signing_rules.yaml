@@ -1,7 +1,9 @@
-signers: signing/people
 delegation:
   requests: signing/delegation_requests
   delegations: signing/delegations
-minimum_turnout: 1  # number of signers
-minimum_support: 0.51  # proportion of signers
-minimum_pending_time: 2 weeks  # signing is not closed even if support reached until this time passes
+rules:
+  "*":
+    minimum_signatures: 1  # number of signers
+    signers:
+      signing/people:
+        minimum_proportion: 0.51  # proportion of signers

@@ -10,3 +10,5 @@ LOGGING = {
     'format': '%(asctime)s :%(levelname)s: %(message)s',
     'datefmt': '%Y/%m/%d %H:%M:%S',
     'level': logging.DEBUG}
+
+SIGNING_RULES_FILENAME = '.signing_rules.yaml'

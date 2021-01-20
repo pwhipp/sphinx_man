@@ -1,0 +1,5 @@
+rules:
+  "*\.yaml":
+    signers:
+      __self__:  # file must contain public key and must have signature matching that key
+      roles/president:  # president must sign
